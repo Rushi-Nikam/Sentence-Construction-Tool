@@ -2,10 +2,11 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
 
-const Home = () => {
+const Home = ({coins=0}) => {
   const navigate = useNavigate();
-
+ coins = localStorage.getItem('finalScore');
   const handleStart = () => {
+    localStorage.removeItem('finalScore');
     navigate('/quiz'); 
   };
 
@@ -40,7 +41,7 @@ const Home = () => {
             <p>Coins</p>
             <div className='flex items-center gap-2'>
               <img src="/coin.svg" alt="" />
-              <p>0</p>
+              <p>{+coins}</p>
             </div>
           </div>
         </div>

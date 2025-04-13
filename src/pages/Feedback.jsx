@@ -4,6 +4,7 @@ import questionsData from "../data/data.json";
 import Circle from "../components/Circle";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
+
 const Feedback = ({ isDarkMode = false }) => {
   const [score, setScore] = useState(0);
   const [visible, setVisible] = useState(false);
@@ -39,10 +40,11 @@ const Feedback = ({ isDarkMode = false }) => {
     }, 0);
 
     setScore(calculatedScore);
+    localStorage.setItem("finalScore", calculatedScore); // Store final score
   }, []);
 
   const handleBackToHome = () => {
-    localStorage.clear();
+    localStorage.removeItem('userAnswers');
     navigate("/");
   };
 
@@ -92,9 +94,8 @@ const Feedback = ({ isDarkMode = false }) => {
 
           {visible && (
             <div className="space-y-6">
-              <div className="flex justify-center ">
-
-              <IoIosArrowDown size={40} />
+              <div className="flex justify-center">
+                <IoIosArrowDown size={40} />
               </div>
               {questions.map((question, idx) => {
                 const storedAnswers =
@@ -109,14 +110,15 @@ const Feedback = ({ isDarkMode = false }) => {
                 return (
                   <div
                     key={idx}
-                    className="p-6 shadow-lg bg-[#FFFFFF] flex flex-col justify-center text-center mb-40 rounded "
+                    className="p-6 shadow-lg bg-[#FFFFFF] flex flex-col justify-center text-center mb-40 rounded"
                   >
-                    <div className="flex items-center justify-between mb-4  w-full">
+                    <div className="flex items-center justify-between mb-4 w-full">
                       <p className="bg-gray-200 flex items-center justify-center rounded px-4 py-2 mt-2 w-[70px]">
                         Prompt
                       </p>
                       <p>
-                        <span className="font-bold">{idx + 1}</span>/<span className="text-gray-400">10</span>
+                        <span className="font-bold">{idx + 1}</span>/
+                        <span className="text-gray-400">10</span>
                       </p>
                     </div>
                     <p className="mb-2 text-[16px] font-medium text-gray-800">
@@ -135,8 +137,8 @@ const Feedback = ({ isDarkMode = false }) => {
                     </p>
 
                     <div className="text-sm gap-2 ml-2 flex mt-10 mb-3">
-                      Your response: 
-                       <span
+                      Your response:{" "}
+                      <span
                         className={
                           isCorrect ? "text-green-500" : "text-red-500"
                         }
@@ -144,15 +146,12 @@ const Feedback = ({ isDarkMode = false }) => {
                         {isCorrect ? "Correct" : "Incorrect"}
                       </span>
                     </div>
-                    <div className="mt-2   font-normal text-[18px] leading-[28px] tracking-[-0.01em]">
+                    <div className="mt-2 font-normal text-[18px] leading-[28px] tracking-[-0.01em]">
                       {sentenceParts.map((part, i) => (
-                        <span
-                          key={i}
-                          className=" mt-2"
-                        >
+                        <span key={i} className="mt-2">
                           {part}
                           {i < sentenceParts.length - 1 && (
-                            <span className={`mx-1 px-2 rounded font-medium`}>
+                            <span className="mx-1 px-2 rounded font-medium">
                               {userAnswer.split(" ")[i] || "____"}
                             </span>
                           )}

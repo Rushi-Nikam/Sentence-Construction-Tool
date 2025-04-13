@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-const Circle = ({ aqiValue = 100, maxAqi = 100,  isDarkMode }) => {
+const Circle = ({ aqiValue = 100, maxAqi = 100, isDarkMode }) => {
   const validAqiValue = isNaN(aqiValue) ? 0 : aqiValue;
   const validMaxAqi = isNaN(maxAqi) || maxAqi === 0 ? 100 : maxAqi;
 
   const getStrokeColorAndText = (score) => {
-    if (score <= 50) return { color: '#ff0000', text: 'Overall Score' };
-    else if (score <= 60) return { color: '#ffcc00', text: 'Overall Score' };
-    else return { color: '#00b050', text: 'Overall Score' };
+    if (score <= 50) return { color: "#ff0000", text: "Overall Score" };
+    else if (score <= 60) return { color: "#ffcc00", text: "Overall Score" };
+    else return { color: "#00b050", text: "Overall Score" };
   };
 
   const { color, text } = getStrokeColorAndText(validAqiValue);
@@ -26,16 +26,15 @@ const Circle = ({ aqiValue = 100, maxAqi = 100,  isDarkMode }) => {
         height={radius * 2}
         viewBox={`0 0 ${radius * 2} ${radius * 2}`}
       >
-  
         <circle
           cx={radius}
           cy={radius}
           r={normalizedRadius}
           fill="none"
-          stroke={isDarkMode ? 'rgba(255,255,255,0.2)' : '#e6e6e6'}
+          stroke={isDarkMode ? "rgba(255,255,255,0.2)" : "#e6e6e6"}
           strokeWidth={strokeWidth}
         />
-      
+
         <circle
           cx={radius}
           cy={radius}
@@ -48,7 +47,7 @@ const Circle = ({ aqiValue = 100, maxAqi = 100,  isDarkMode }) => {
           strokeLinecap="round"
           transform={`rotate(-90 ${radius} ${radius})`}
         />
-       
+
         <text
           x="50%"
           y="50%"
@@ -60,7 +59,7 @@ const Circle = ({ aqiValue = 100, maxAqi = 100,  isDarkMode }) => {
         >
           {validAqiValue}
         </text>
-      
+
         <text
           x="50%"
           y={radius + 40}
@@ -70,8 +69,6 @@ const Circle = ({ aqiValue = 100, maxAqi = 100,  isDarkMode }) => {
         >
           {text}
         </text>
-    
-       
       </svg>
     </div>
   );

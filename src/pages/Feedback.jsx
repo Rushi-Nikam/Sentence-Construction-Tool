@@ -44,7 +44,7 @@ const Feedback = ({ isDarkMode = false }) => {
   }, []);
 
   const handleBackToHome = () => {
-    localStorage.removeItem('userAnswers');
+    localStorage.removeItem("userAnswers");
     navigate("/");
   };
 

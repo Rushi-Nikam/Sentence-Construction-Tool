@@ -1,7 +1,7 @@
-import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';      
-import Quiz from './pages/Quiz';      
-import Feedback from './pages/Feedback';
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Quiz from "./pages/Quiz";
+import Feedback from "./pages/Feedback";
 
 const AppRouter = () => {
   return (

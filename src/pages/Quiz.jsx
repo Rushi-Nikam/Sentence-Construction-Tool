@@ -106,25 +106,27 @@ const Quiz = () => {
       </div>
       
       <div className="text-xl gap-[20px] w-full max-w-5xl font-semibold mb-4 flex flex-wrap justify-center">
-        {sentenceParts.map((part, i) => (
-          <React.Fragment key={i}>
-            <span>{part}</span>
-            {i < blanksCount && (
-              selectedWords[i] ? (
-                <span
-                  onClick={() => handleUnselectWord(selectedWords[i])}
-                  className="mx-2 bg-blue-100 px-2 py-1 rounded cursor-pointer"
-                >
-                  {selectedWords[i]}
-                </span>
-              ) : (
-                <span className="mx-2 px-4 py-1 border-b border-black text-transparent select-none">
-                  placeholder
-                </span>
-              )
-            )}
-          </React.Fragment>
-        ))}
+      {sentenceParts.map((part, i) => (
+  <React.Fragment key={i}>
+    <span>{part}</span>
+    {i < blanksCount && (
+      <span className="inline-block relative min-w-[100px] h-[28px] align-middle mx-2">
+        <span className="absolute bottom-0 left-0 w-full border-b border-black">&nbsp;</span>
+        {selectedWords[i] && (
+          <span
+            onClick={() => handleUnselectWord(selectedWords[i])}
+            className="relative z-10 px-2 py-1 rounded cursor-pointer bg-slate-100"
+          >
+            {selectedWords[i]}
+          </span>
+        )}
+      </span>
+    )}
+  </React.Fragment>
+))}
+
+
+
       </div>
       
      
